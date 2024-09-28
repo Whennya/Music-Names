@@ -1,5 +1,4 @@
 GM.ZELyrics = {
-    [".mp3"] = {
-
+    ["lvl5end.mp3"] = {
     }
 }
