@@ -68,3 +68,23 @@ GM.ZELyrics = {
 - [Detroid/rynerwolf](https://github.com/RynerWolf) for managing zeddy and allowing me to maintain these configs
 - [Snowy](https://github.com/snorux) for making the tool to port zeddy configs to GFL
 - *Bomberman*, *Haruka*, *Hibiki*, *Detroid/RynerWolf*, *Heavy*, *Kiriya*, *DVC*, *Watdoink*, *Chong0074*, *WhiteCat*, *kun*, *Owlfy*, *Cylops*, *tapch0w*, *Chinny*, *BAN*, *Tsukasa*, *FroZRil*, *kaomunkai*, *KingMagress*, *Hichatu*, *tilgep*, *WILD BANAN*, *TuPu*, *Beppu*, *Sprinuts*, *ShiroNeko*, *Berke* for making the original configs used on zeddy
+
+## Statistics
+
+| Artist | Count | Percentage |
+| --- | --- | --- |
+| Final Fantasy OST | 290 | 8.17% |
+| Pendulum | 183 | 5.16% |
+| Two Steps From Hell | 129 | 3.64% |
+| Muzzy | 47 | 1.32% |
+| Audiomachine | 43 | 1.21% |
+| Nine Inch Nails | 40 | 1.13% |
+| Cliff Lin | 37 | 1.04% |
+| Perturbator | 33 | 0.93% |
+| C418 | 33 | 0.93% |
+| Immediate Music | 32 | 0.90% |
+| Pokémon OST | 31 | 0.87% |
+| Blue Stahli | 26 | 0.73% |
+| Skillet | 25 | 0.70% |
+| Waterflame | 24 | 0.68% |
+| Half | 23 | 0.65% |
