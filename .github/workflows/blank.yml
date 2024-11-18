@@ -1,9 +1,10 @@
-name: Update Stats Data
+name: Run Stats Script
 
 on:
   push:
     branches:
-      - Stats
+      - Main
+  workflow_dispatch:
 
 jobs:
   run-stats:
@@ -16,11 +17,11 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.9'  # Adjust the Python version if needed
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt 
+        pip install -r requirements.txt || echo "No requirements file found"
 
     - name: Run stats.py
       run: |
