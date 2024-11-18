@@ -41,6 +41,8 @@ def parser(directory):
                             artist_counter[consolidated_artist] += additional_count
     return artist_counter
 
+import os
+
 def updatedata(artist_counts):
     total_count = sum(artist_counts.values())
     sorted_artists = sorted(artist_counts.items(), key=lambda x: x[1], reverse=True)
@@ -54,7 +56,6 @@ def updatedata(artist_counts):
 
     print(table)
 
-
     readme_path = 'README.MD'
     with open(readme_path, 'r', encoding='utf-8') as readme_file:
         lines = readme_file.readlines()
@@ -65,6 +66,11 @@ def updatedata(artist_counts):
 
     with open(readme_path, 'w', encoding='utf-8') as readme_file:
         readme_file.writelines(updated_content)
+
+    print("cwd:", os.getcwd())
+
+    musicnames_path = os.path.join(os.getcwd(), "musicnames")
+    print("mn:", musicnames_path)
 
 def main():
     directory = './musicname'
