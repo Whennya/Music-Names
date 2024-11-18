@@ -1,4 +1,4 @@
-name: Run Stats Script
+name: Update Stats
 
 on:
   push:
@@ -20,10 +20,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt || echo "No requirements file found"
 
     - name: Run stats.py
       run: |
