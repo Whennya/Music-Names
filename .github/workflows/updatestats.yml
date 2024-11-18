@@ -3,7 +3,7 @@ name: Update Stats
 on:
   push:
     branches:
-      - main
+      - main  # Make sure the branch name is correct
   workflow_dispatch:
 
 jobs:
@@ -16,6 +16,11 @@ jobs:
       with:
         persist-credentials: true
 
+    - name: Ensure up-to-date repository
+      run: |
+        git fetch --all
+        git reset --hard origin/main
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -27,8 +32,8 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "Whennya Stats"
+        git config user.email "whennya@users.noreply.github.com"
 
     - name: Commit and Push Changes
       run: |
