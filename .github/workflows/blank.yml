@@ -36,8 +36,8 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git add README.md
-        git commit -m "Update README.md Statistics" || echo "No changes to commit"
+        git add README.MD
+        git commit -m "Update README.MD Statistics" || echo "No changes to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
