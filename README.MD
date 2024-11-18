@@ -79,8 +79,8 @@ GM.ZELyrics = {
 | Muzzy | 46 | 1.54% |
 | Audiomachine | 43 | 1.44% |
 | Cliff Lin | 37 | 1.24% |
-| Perturbator | 32 | 1.07% |
 | Immediate Music | 32 | 1.07% |
+| Perturbator | 32 | 1.07% |
 | Pokémon OST | 31 | 1.04% |
 | Blue Stahli | 26 | 0.87% |
 | Nine Inch Nails | 26 | 0.87% |
