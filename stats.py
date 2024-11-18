@@ -11,7 +11,8 @@ def parser(directory):
         "Final Fantasy OST": [r"ff[ivxlc]+"],
         "Half-Life OST": ["Half-Life"],
         "Harry Potter OST": ["Harry Potter"],
-        "Nier OST": [r"NieR Replicant ver\.1\.22", r"NieR Gestalt Replicant", r"NieR: Automata"]
+        "Nier OST": [r"NieR Replicant ver\.1\.22", r"NieR Gestalt Replicant", r"NieR: Automata"],
+        "Castlevania OST": ["Castlevania"]
     }
 
     def consolidate(artist_name):
@@ -66,17 +67,6 @@ def updatedata(artist_counts):
 
     with open(readme_path, 'w', encoding='utf-8') as readme_file:
         readme_file.writelines(updated_content)
-
-    print("cwd:", os.getcwd())
-
-    musicnames_path = os.path.join(os.getcwd(), "musicname")
-    print("mn:", musicnames_path)
-
-    if os.path.exists(musicnames_path):
-        files = [f for f in os.listdir(musicnames_path) if os.path.isfile(os.path.join(musicnames_path, f))]
-        print("Files in 'musicname' directory:")
-        for file in files:
-            print(file)
 
 def main():
     directory = './musicname'
