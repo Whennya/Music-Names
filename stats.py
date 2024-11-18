@@ -69,14 +69,15 @@ def updatedata(artist_counts):
 
     print("cwd:", os.getcwd())
 
-    musicnames_path = os.path.join(os.getcwd(), "musicnames")
+    musicnames_path = os.path.join(os.getcwd(), "musicname")
     print("mn:", musicnames_path)
 
     if os.path.exists(musicnames_path):
         files = [f for f in os.listdir(musicnames_path) if os.path.isfile(os.path.join(musicnames_path, f))]
-        print("Files in 'musicnames' directory:")
+        print("Files in 'musicname' directory:")
         for file in files:
             print(file)
+
 def main():
     directory = './musicname'
     artist_counts = parser(directory)
