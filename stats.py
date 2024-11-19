@@ -6,6 +6,8 @@ def parser(directory):
     match_lines = r'"[^"]+\.mp3"\s+"([^"]+)"'
     artist_split = r"\s*,\s*"
     song_split = r"\s*/\s*"
+    # To compile multiple tags / artists into one using strings or regex, add it here with the format below "Consolidated Artist Name": [Rules for how to consolidate]
+    # The log of what is consolidated into what will be printed to the github actions log,
     consolidation = {
         "Pokémon OST": ["Pokémon"],
         "Final Fantasy OST": [r"ff[ivxlc]+"],
@@ -23,32 +25,25 @@ def parser(directory):
         return artist_name
 
     for file_name in os.listdir(directory):
-        if file_name.endswith('.cfg') and (not file_name.startswith("zs_") or file_name.startswith("zs_obj")):
-            file_path = os.path.join(directory, file_name)
-            with open(file_path, 'r', encoding='utf-8') as file:
+        if file_name.endswith('.cfg') and not file_name.startswith("zs_") or file_name.startswith("zs_obj"):
+            with open(os.path.join(directory, file_name), 'r', encoding='utf-8') as file:
                 content = file.read()
-                lines = re.findall(match_lines, content)
-                for line in lines:
-                    artists = re.split(artist_split, line)
-                    for artist_entry in artists:
+                for line in re.findall(match_lines, content):
+                    for artist_entry in re.split(artist_split, line):
                         match = re.match(r"(.{0,5}-.*?|[^-\s]+.*?)\s*-\s*", artist_entry)
                         if match:
                             artist = match.group(1).strip()
                             consolidated_artist = consolidate(artist)
                             if consolidated_artist != artist:
                                 print(f"Consolidating {artist} into {consolidated_artist}")
-                            songs = re.split(song_split, artist_entry)
-                            additional_count = len(songs)
-                            artist_counter[consolidated_artist] += additional_count
+                            artist_counter[consolidated_artist] += len(re.split(song_split, artist_entry))
     return artist_counter
-
-import os
 
 def updatedata(artist_counts):
     total_count = sum(artist_counts.values())
     sorted_artists = sorted(artist_counts.items(), key=lambda x: x[1], reverse=True)
 
-    table = "\n| Artist | Count | Percentage |\n"
+    table = "| Artist | Count | Percentage |\n"
     table += "| --- | --- | --- |\n"
 
     for artist, count in sorted_artists[:15]:
@@ -69,6 +64,7 @@ def updatedata(artist_counts):
         readme_file.writelines(updated_content)
 
 def main():
+    # Honestly I have no idea if this needs to be hard-defined, but currently it works as is, and this is how it was running in debug environment
     directory = './musicname'
     artist_counts = parser(directory)
     updatedata(artist_counts)

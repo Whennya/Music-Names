@@ -3,7 +3,7 @@ name: Update Stats
 on:
   push:
     branches:
-      - main  # Make sure the branch name is correct
+      - main
   workflow_dispatch:
 
 jobs:
