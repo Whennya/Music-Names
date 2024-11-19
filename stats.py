@@ -60,9 +60,9 @@ def updatedata(artist_counts):
     readme_path = 'README.MD'
     with open(readme_path, 'r', encoding='utf-8') as readme_file:
         lines = readme_file.readlines()
-    # Hard define the table lines, otherwise it will nuke everything below it, these will need to be updated if the table is moved to a seperate section OR if table size is updated. This WILL create a forced newline at line 92 on run
-    top_section = lines[:73]
-    bottom_section = lines[92:]
+    # Hard define the table lines, otherwise it will nuke everything below it, these will need to be updated if the table is moved to a seperate section OR if table size is updated. This WILL create a forced newline at line 93 on run
+    top_section = lines[:74]
+    bottom_section = lines[93:]
     updated_content = top_section + [table] + bottom_section
 
     with open(readme_path, 'w', encoding='utf-8') as readme_file:
