@@ -70,21 +70,4 @@ GM.ZELyrics = {
 - *Bomberman*, *Haruka*, *Hibiki*, *Detroid/RynerWolf*, *Heavy*, *Kiriya*, *DVC*, *Watdoink*, *Chong0074*, *WhiteCat*, *kun*, *Owlfy*, *Cylops*, *tapch0w*, *Chinny*, *BAN*, *Tsukasa*, *FroZRil*, *kaomunkai*, *KingMagress*, *Hichatu*, *tilgep*, *WILD BANAN*, *TuPu*, *Beppu*, *Sprinuts*, *ShiroNeko*, *Berke* for making the original configs used on zeddy
 
 ## Statistics
-
-| Artist | Count | Percentage |
-| --- | --- | --- |
-| Final Fantasy OST | 269 | 8.98% |
-| Pendulum | 161 | 5.38% |
-| Two Steps From Hell | 125 | 4.18% |
-| Muzzy | 46 | 1.54% |
-| Audiomachine | 43 | 1.44% |
-| Cliff Lin | 37 | 1.24% |
-| Immediate Music | 32 | 1.07% |
-| Perturbator | 32 | 1.07% |
-| Pokémon OST | 31 | 1.04% |
-| Blue Stahli | 26 | 0.87% |
-| Nine Inch Nails | 26 | 0.87% |
-| Skillet | 25 | 0.84% |
-| C418 | 24 | 0.80% |
-| Waterflame | 22 | 0.73% |
-| The Prodigy | 20 | 0.67% |
+- These statistics are only representative of CSS ZE and the Sunrust ZS OBJ map configs, the data contained below will automatically update on each new commit.
