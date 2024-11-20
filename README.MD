@@ -88,4 +88,4 @@ GM.ZELyrics = {
 | Skillet | 25 | 0.84% |
 | C418 | 24 | 0.80% |
 | Waterflame | 22 | 0.73% |
-| The Prodigy | 20 | 0.67% |
+| Castlevania OST | 20 | 0.67% |
