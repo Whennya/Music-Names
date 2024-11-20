@@ -63,11 +63,32 @@ def updatedata(artist_counts):
     with open(readme_path, 'w', encoding='utf-8') as readme_file:
         readme_file.writelines(updated_content)
 
+def cleanup(directory):
+    matchsongs = re.compile(r".*\.(?:mp3|wav)", re.IGNORECASE)
+    #matchsongs = re.compile(r".*\.mp3", re.IGNORECASE)
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".cfg"):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+
+                matches = matchsongs.findall(content)
+                print(matches)
+                for match in matches:
+                    if any(char.isupper() for char in match):
+                        lowercase = match.lower()
+                        content = content.replace(match, lowercase)
+
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+
 def main():
     # Honestly I have no idea if this needs to be hard-defined, but currently it works as is, and this is how it was running in debug environment
     directory = './musicname'
     artist_counts = parser(directory)
     updatedata(artist_counts)
+    cleanup(directory)
 
 if __name__ == "__main__":
     main()
