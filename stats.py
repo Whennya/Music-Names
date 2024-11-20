@@ -41,7 +41,7 @@ def parser(directory):
 
 def updatedata(artist_counts):
     total_count = sum(artist_counts.values())
-    sorted_artists = sorted(artist_counts.items(), key=lambda x: x[1], reverse=True)
+    sorted_artists = sorted(artist_counts.items(), key=lambda x: (-x[1], x[0]))
 
     table = "| Artist | Count | Percentage |\n"
     table += "| --- | --- | --- |\n"
