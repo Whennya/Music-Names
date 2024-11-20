@@ -74,7 +74,6 @@ def cleanup(directory):
                     content = f.read()
 
                 matches = matchsongs.findall(content)
-                print(matches)
                 for match in matches:
                     if any(char.isupper() for char in match):
                         lowercase = match.lower()
