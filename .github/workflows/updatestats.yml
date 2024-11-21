@@ -37,7 +37,7 @@ jobs:
 
     - name: Commit and Push Changes
       run: |
-        git add README.MD
+        git add $(git ls-files --modified)
         git commit -m "Update README.MD Statistics" || echo "No changes to commit"
         git push
       env:
