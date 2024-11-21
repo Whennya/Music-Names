@@ -83,7 +83,7 @@ def cleanup(directory):
                     f.write(content)
 
 def main():
-    # Honestly I have no idea if this needs to be hard-defined, but currently it works as is, and this is how it was running in debug environment
+    # Honestly I have no idea if this needs to be hard-defined, could walk entire repo, but currently it works as is, and this is how it was running in debug environment
     directory = './musicname'
     artist_counts = parser(directory)
     updatedata(artist_counts)
