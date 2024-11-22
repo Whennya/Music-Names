@@ -38,7 +38,7 @@ jobs:
     - name: Commit and Push Changes
       run: |
         git add $(git ls-files --modified)
-        git commit -m "Update README.MD Statistics" || echo "No changes to commit"
+        git commit -m "Update Statistics and clean song files" || echo "No changes to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
