@@ -4,7 +4,7 @@ from collections import Counter
 def parser(directory):
     artist_counter = Counter()
     match_lines = r'"[^"]+\.mp3"\s+"([^"]+)"'
-    artist_split = r"\s*,\s*"
+    artist_split = r"\s*,\s*" # These two splits should help account for the weird formatting done in the NPST configs, through debugging the ammounts appended ontop of the original value seem correct
     song_split = r"\s*/\s*"
     # To compile multiple tags / artists into one using strings or regex, add it here with the format below "Consolidated Artist Name": [Rules for how to consolidate]
     # The log of what is consolidated into what will be printed to the github actions log,
