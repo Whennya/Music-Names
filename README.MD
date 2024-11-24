@@ -74,18 +74,18 @@ GM.ZELyrics = {
 
 | Artist | Count | Percentage |
 | --- | --- | --- |
-| Final Fantasy OST | 271 | 8.93% |
-| Pendulum | 161 | 5.31% |
-| Two Steps From Hell | 126 | 4.15% |
-| Audiomachine | 46 | 1.52% |
-| Muzzy | 46 | 1.52% |
-| Cliff Lin | 37 | 1.22% |
-| Immediate Music | 32 | 1.05% |
+| Final Fantasy OST | 271 | 8.88% |
+| Pendulum | 161 | 5.28% |
+| Two Steps From Hell | 131 | 4.29% |
+| Audiomachine | 49 | 1.61% |
+| Muzzy | 46 | 1.51% |
+| Cliff Lin | 37 | 1.21% |
+| Immediate Music | 34 | 1.11% |
 | Perturbator | 32 | 1.05% |
 | Pokémon OST | 31 | 1.02% |
-| Blue Stahli | 26 | 0.86% |
-| Nine Inch Nails | 26 | 0.86% |
+| Blue Stahli | 26 | 0.85% |
+| Nine Inch Nails | 26 | 0.85% |
 | Skillet | 25 | 0.82% |
 | C418 | 24 | 0.79% |
-| Waterflame | 22 | 0.73% |
+| Waterflame | 22 | 0.72% |
 | Castlevania OST | 20 | 0.66% |
