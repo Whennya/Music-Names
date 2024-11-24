@@ -7,7 +7,8 @@ def parser(directory):
     artist_split = r"\s*,\s*" # These two splits should help account for the weird formatting done in the NPST configs, through debugging the ammounts appended ontop of the original value seem correct
     song_split = r"\s*/\s*"
     # To compile multiple tags / artists into one using strings or regex, add it here with the format below "Consolidated Artist Name": [Rules for how to consolidate]
-    # The log of what is consolidated into what will be printed to the github actions log,
+    # The log of what is consolidated into what will be printed to the github actions log
+    # This is entirely used for statistics and does not touch any file
     consolidation = {
         "Pokémon OST": ["Pokémon"],
         "Final Fantasy OST": [r"ff[ivxlc]+"],
@@ -25,7 +26,7 @@ def parser(directory):
         return artist_name
 
     for file_name in os.listdir(directory):
-        if file_name.endswith('.cfg') and not file_name.startswith("zs_") or file_name.startswith("zs_obj"):
+        if file_name.endswith('.cfg') and (file_name.startswith("zs_obj") or not file_name.startswith("zs_")):
             with open(os.path.join(directory, file_name), 'r', encoding='utf-8') as file:
                 content = file.read()
                 for line in re.findall(match_lines, content):
@@ -52,34 +53,28 @@ def updatedata(artist_counts):
 
     print(table)
 
-    readme_path = 'README.MD'
-    with open(readme_path, 'r', encoding='utf-8') as readme_file:
+    with open('README.MD', 'r+', encoding='utf-8') as readme_file:
         lines = readme_file.readlines()
     # Hard define the table lines, otherwise it will nuke everything below it, these will need to be updated if the table is moved to a seperate section OR if table size is updated. This WILL create a forced newline at line 93 on run
-    top_section = lines[:74]
-    bottom_section = lines[93:]
-    updated_content = top_section + [table] + bottom_section
-
-    with open(readme_path, 'w', encoding='utf-8') as readme_file:
+    # If the table will always be at the bottom of README.MD, bottom_section can be removed, otherwise it needs to be defined
+        top_section = lines[:74]
+        bottom_section = lines[93:]
+        updated_content = top_section + [table] + bottom_section
+        readme_file.seek(0)
         readme_file.writelines(updated_content)
 
 def cleanup(directory):
+    # This will check every single .cfg file where the song is inputted correctly (.mp3 / .wav), and if it contains any capital letters, it will lowercase it automatically to abide by the plugin format
     matchsongs = re.compile(r".*\.(?:mp3|wav)", re.IGNORECASE)
-    #matchsongs = re.compile(r".*\.mp3", re.IGNORECASE)
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".cfg"):
                 file_path = os.path.join(root, file)
-                with open(file_path, 'r', encoding='utf-8') as f:
+                with open(file_path, 'r+', encoding='utf-8') as f:
                     content = f.read()
-
-                matches = matchsongs.findall(content)
-                for match in matches:
-                    if any(char.isupper() for char in match):
-                        lowercase = match.lower()
-                        content = content.replace(match, lowercase)
-
-                with open(file_path, 'w', encoding='utf-8') as f:
+                    # Match all upper case strings using this function instead of whatever jank I had before, honestly has 0 different effect except not being forced to open the file twice
+                    content = matchsongs.sub(lambda m: m.group(0).lower() if any(char.isupper() for char in m.group(0)) else m.group(0), content)
+                    f.seek(0)
                     f.write(content)
 
 def main():
