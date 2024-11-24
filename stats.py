@@ -26,8 +26,8 @@ def parser(directory):
         return artist_name
 
     for file_name in os.listdir(directory):
-        if file_name.endswith('.cfg') and (file_name.startswith("zs_obj") or not file_name.startswith("zs_")):
-            with open(os.path.join(directory, file_name), 'r', encoding='utf-8') as file:
+        if file_name.endswith(".cfg") and (file_name.startswith("zs_obj") or not file_name.startswith("zs_")):
+            with open(os.path.join(directory, file_name), "r", encoding="utf-8") as file:
                 content = file.read()
                 for line in re.findall(match_lines, content):
                     for artist_entry in re.split(artist_split, line):
@@ -53,7 +53,7 @@ def updatedata(artist_counts):
 
     print(table)
 
-    with open('README.MD', 'r+', encoding='utf-8') as readme_file:
+    with open("README.MD", "r+", encoding="utf-8") as readme_file:
         lines = readme_file.readlines()
     # Hard define the table lines, otherwise it will nuke everything below it, these will need to be updated if the table is moved to a seperate section OR if table size is updated. This WILL create a forced newline at line 93 on run
     # If the table will always be at the bottom of README.MD, bottom_section can be removed, otherwise it needs to be defined
@@ -64,13 +64,14 @@ def updatedata(artist_counts):
         readme_file.writelines(updated_content)
 
 def cleanup(directory):
-    # This will check every single .cfg file where the song is inputted correctly (.mp3 / .wav), and if it contains any capital letters, it will lowercase it automatically to abide by the plugin format
-    matchsongs = re.compile(r".*\.(?:mp3|wav)", re.IGNORECASE)
+    # This will check every single .cfg file where the song is inputted correctly (.mp3 / .wav / .ogg), and if it contains any capital letters, it will lowercase it automatically to abide by the plugin format
+    # TODO: Add linter to alert for configs that have incorrect song formattings, i.e missing file extension or ,mp3 instead of .mp3 etc
+    matchsongs = re.compile(r".*\.(?:mp3|wav|ogg)", re.IGNORECASE)
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".cfg"):
                 file_path = os.path.join(root, file)
-                with open(file_path, 'r+', encoding='utf-8') as f:
+                with open(file_path, "r+", encoding="utf-8") as f:
                     content = f.read()
                     # Match all upper case strings using this function instead of whatever jank I had before, honestly has 0 different effect except not being forced to open the file twice
                     content = matchsongs.sub(lambda m: m.group(0).lower() if any(char.isupper() for char in m.group(0)) else m.group(0), content)
@@ -79,7 +80,7 @@ def cleanup(directory):
 
 def main():
     # Honestly I have no idea if this needs to be hard-defined, could walk entire repo, but currently it works as is, and this is how it was running in debug environment
-    directory = './musicname'
+    directory = "./musicname"
     artist_counts = parser(directory)
     updatedata(artist_counts)
     cleanup(directory)
