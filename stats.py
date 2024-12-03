@@ -2,9 +2,11 @@ import os, re
 from collections import Counter
 
 def parser(directory):
+    # TODO: Match Multiple artists that arent features and give +1
+    # TODO: song_split check needs to be more robust to account for misflags such as the pkmn issue
     artist_counter = Counter()
     match_lines = r'"[^"]+\.mp3"\s+"([^"]+)"'
-    artist_split = r"\s*,\s*" # These two splits should help account for the weird formatting done in the NPST configs, through debugging the ammounts appended ontop of the original value seem correct
+    artist_split = r",\s*(?![^-]+(?: OST| Soundtrack)\b)" # These two splits should help account for the weird formatting done in the NPST configs, through debugging the ammounts appended ontop of the original value seem correct
     song_split = r"\s*/\s*"
     # To compile multiple tags / artists into one using strings or regex, add it here with the format below "Consolidated Artist Name": [Rules for how to consolidate]
     # The log of what is consolidated into what will be printed to the github actions log
@@ -12,10 +14,11 @@ def parser(directory):
     consolidation = {
         "Pokémon OST": ["Pokémon"],
         "Final Fantasy OST": [r"ff[ivxlc]+"],
-        "Half-Life OST": ["Half-Life"],
+        "Half-Life OST": ["Half-Life", "Black Mesa", "Joel Nielsen"],
         "Harry Potter OST": ["Harry Potter"],
         "Nier OST": [r"NieR Replicant ver\.1\.22", r"NieR Gestalt Replicant", r"NieR: Automata"],
         "Castlevania OST": ["Castlevania"]
+#        "Doom OST": []
     }
 
     def consolidate(artist_name):
@@ -65,18 +68,27 @@ def updatedata(artist_counts):
 
 def cleanup(directory):
     # This will check every single .cfg file where the song is inputted correctly (.mp3 / .wav / .ogg), and if it contains any capital letters, it will lowercase it automatically to abide by the plugin format
-    # TODO: Add linter to alert for configs that have incorrect song formattings, i.e missing file extension or ,mp3 instead of .mp3 etc
+    # TODO check ./lyrics aswell
     matchsongs = re.compile(r".*\.(?:mp3|wav|ogg)", re.IGNORECASE)
+    quotes = re.compile(r'"((?!music"$)[^"]+)"')
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith(".cfg"):
                 file_path = os.path.join(root, file)
                 with open(file_path, "r+", encoding="utf-8") as f:
-                    content = f.read()
-                    # Match all upper case strings using this function instead of whatever jank I had before, honestly has 0 different effect except not being forced to open the file twice
-                    content = matchsongs.sub(lambda m: m.group(0).lower() if any(char.isupper() for char in m.group(0)) else m.group(0), content)
+                    content = f.readlines()
+                    for line in content:
+                        # Theres probably and easier way to do this but ATM I can't think of one
+                        # Check all files for correctly formatted song files, in hindsight I should make this fail the github action so its more visible, but I don't know how to do that
+                        match = quotes.search(line)
+                        if match:
+                            song_file = match.group(1)
+                            if not re.search(r".*\.(?:mp3|wav|ogg)", song_file, re.IGNORECASE):
+                                print(f"Incorrect song formatting in file: {file_path}, Line: {line.strip()}")
+
+                    content = [matchsongs.sub(lambda m: m.group(0).lower() if any(char.isupper() for char in m.group(0)) else m.group(0), line) for line in content]
                     f.seek(0)
-                    f.write(content)
+                    f.writelines(content)
 
 def main():
     # Honestly I have no idea if this needs to be hard-defined, could walk entire repo, but currently it works as is, and this is how it was running in debug environment
