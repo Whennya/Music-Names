@@ -38,8 +38,9 @@ def parser(directory):
                         if match:
                             artist = match.group(1).strip()
                             consolidated_artist = consolidate(artist)
-                            if consolidated_artist != artist:
-                                print(f"Consolidating {artist} into {consolidated_artist}")
+                            #if consolidated_artist != artist:
+                            #    print(f"Consolidating {artist} into {consolidated_artist}")
+                            # Only used for debugging
                             artist_counter[consolidated_artist] += len(re.split(song_split, artist_entry))
     return artist_counter
 
@@ -69,6 +70,7 @@ def updatedata(artist_counts):
 def cleanup(directory):
     # This will check every single .cfg file where the song is inputted correctly (.mp3 / .wav / .ogg), and if it contains any capital letters, it will lowercase it automatically to abide by the plugin format
     # TODO check ./lyrics aswell
+    # TODO append .mp3 to files missing an extension and add a note within the file
     matchsongs = re.compile(r".*\.(?:mp3|wav|ogg)", re.IGNORECASE)
     quotes = re.compile(r'"((?!music"$)[^"]+)"')
     for root, dirs, files in os.walk(directory):
