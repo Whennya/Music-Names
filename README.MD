@@ -74,11 +74,11 @@ GM.ZELyrics = {
 
 | Artist | Count | Percentage |
 | --- | --- | --- |
-| Final Fantasy OST | 275 | 8.88% |
-| Pendulum | 167 | 5.39% |
+| Final Fantasy OST | 275 | 8.89% |
+| Pendulum | 166 | 5.36% |
 | Two Steps From Hell | 131 | 4.23% |
-| Audiomachine | 50 | 1.61% |
-| Muzzy | 50 | 1.61% |
+| Audiomachine | 50 | 1.62% |
+| Muzzy | 50 | 1.62% |
 | Pokémon OST | 43 | 1.39% |
 | Cliff Lin | 37 | 1.20% |
 | Immediate Music | 37 | 1.20% |
