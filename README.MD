@@ -74,9 +74,9 @@ GM.ZELyrics = {
 
 | Artist | Count | Percentage |
 | --- | --- | --- |
-| Final Fantasy OST | 276 | 8.80% |
-| Pendulum | 167 | 5.33% |
-| Two Steps From Hell | 131 | 4.18% |
+| Final Fantasy OST | 276 | 8.79% |
+| Pendulum | 167 | 5.32% |
+| Two Steps From Hell | 131 | 4.17% |
 | Audiomachine | 50 | 1.59% |
 | Muzzy | 50 | 1.59% |
 | Pokémon OST | 43 | 1.37% |
@@ -87,6 +87,6 @@ GM.ZELyrics = {
 | Skillet | 28 | 0.89% |
 | Nine Inch Nails | 26 | 0.83% |
 | The Prodigy | 26 | 0.83% |
-| C418 | 24 | 0.77% |
+| C418 | 24 | 0.76% |
 | Waterflame | 23 | 0.73% |
 % |
