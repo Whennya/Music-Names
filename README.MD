@@ -89,4 +89,3 @@ GM.ZELyrics = {
 | The Prodigy | 26 | 0.83% |
 | C418 | 24 | 0.76% |
 | Waterflame | 23 | 0.73% |
-% |
